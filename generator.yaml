@@ -1,0 +1,43 @@
+ignore:
+  field_paths:
+    - Role.PermissionsBoundary
+  resource_names:
+    - AccountAlias
+    - AccessKey
+    - Group
+    - InstanceProfile
+    - LoginProfile
+    - OpenIDConnectProvider
+    - PolicyVersion
+    - SAMLProvider
+    - ServiceSpecificCredential
+    - ServiceLinkedRole
+    - User
+    - VirtualMFADevice
+operations:
+  AttachRolePolicy:
+    operation_type: Create
+    resource_name: RolePolicyAttachment
+  DetachRolePolicy:
+    operation_type: Delete
+    resource_name: RolePolicyAttachment
+  ListAttachedRolePolicies:
+    operation_type: List
+    resource_name: RolePolicyAttachment
+  GetRole:
+    set_output_custom_method_name: CustomGetRoleSetOutput
+  PutRolePolicy:
+    operation_type: Create
+    resource_name: RolePolicy
+  UpdateRole:
+    custom_implementation: customUpdateRole
+resources:
+  Policy:
+    update_operation:
+      custom_method_name: customUpdatePolicy
+  RolePolicyAttachment:
+    update_operation:
+      custom_method_name: customUpdateRolePolicyAttachment
+  RolePolicy:
+    update_operation:
+      custom_method_name: customUpdateRolePolicy
