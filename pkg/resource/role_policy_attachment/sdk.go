@@ -67,6 +67,11 @@ func (rm *resourceManager) sdkFind(
 	found := false
 	for _, elem := range resp.AttachedPolicies {
 		if elem.PolicyArn != nil {
+			if ko.Spec.PolicyARN != nil {
+				if *elem.PolicyArn != *ko.Spec.PolicyARN {
+					continue
+				}
+			}
 			ko.Spec.PolicyARN = elem.PolicyArn
 		} else {
 			ko.Spec.PolicyARN = nil

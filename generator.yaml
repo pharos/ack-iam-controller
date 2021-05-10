@@ -36,6 +36,9 @@ resources:
     update_operation:
       custom_method_name: customUpdatePolicy
   RolePolicyAttachment:
+    list_operation:
+      match_fields:
+        - PolicyArn
     update_operation:
       custom_method_name: customUpdateRolePolicyAttachment
   RolePolicy:
